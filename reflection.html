@@ -22,11 +22,11 @@
             <h1 class="text-3xl font-bold mb-6">AI Tool Comparison: Claude Haiku 4.5 vs GPT-4o</h1>
             
             <p class="text-gray-700 leading-relaxed mb-6">
-                For this project, I tested Claude Haiku 4.5 and GPT-4o to build a PokéAPI fetcher using Alpine.js and Tailwind CSS. Claude Haiku 4.5 was significantly better, and much more helpful. The code Claude generated worked immediately, while GPT-4o's button-based fetch functionality failed completely. When I looked at GPT-4o's code, I was able to find the issue: the 'fetchRandomPokemon()' and 'fetchPokemonAbilities()' functions weren't properly bound to Alpine.js's reactive data system. The buttons would trigger the functions, but the results wouldn't display because the component state wasn't being updated correctly. Additionally, Claude provided follow-up questions like "Would you like to add loading states?" and "How should we handle API errors?", which helped me think about edge cases. GPT-4o did not provide any guidance like that.
+                For this project, I tested Claude Haiku 4.5 and GPT-4o to build a PokéAPI fetcher using Alpine.js and Tailwind CSS. Claude Haiku 4.5 was significantly better, and much more helpful. The code Claude generated worked immediately, while GPT-4o's button-based fetch functionality failed completely. When I looked at GPT-4o's code, I was able to find the issue: the 'fetchRandomPokemon()' and 'fetchPokemonAbilities()' functions weren't properly bound to Alpine.js's reactive data system. The buttons would trigger the functions, but the results wouldn't display because the component state wasn't being updated correctly. In addition, Claude provided follow-up questions like "Would you like to add loading states?" and "How should we handle API errors?", which helped me think about edge cases. GPT-4o did not provide any guidance like that.
             </p>
 
-            <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
-                <h3 class="font-bold mb-2">Key Difference:</h3>
+            <div class="bg-red-50 border-l-4 border-red-500 p-4">
+                <h3 class="font-bold mb-2">Main Difference:</h3>
                 <p class="text-gray-700 text-sm">
                     GPT-4o's code looked correct but the buttons didn't work due to improper Alpine.js state management. Claude's code worked on the first try with better explanations and helpful follow-up suggestions.
                 </p>
