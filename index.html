@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéAPI Explorer</title>
+    <script defer src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="js/api.js"></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-red-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">🎮 PokéAPI Explorer</h1>
+            <div class="space-x-4">
+                <a href="index.html" class="hover:underline">Home</a>
+                <a href="reflection.html" class="hover:underline">AI Reflection</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-8">
+        <!-- Random Pokemon Endpoint -->
+        <section x-data="randomPokemon()" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Random Pokémon</h2>
+            <button @click="fetchRandomPokemon()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Get Random Pokémon
+            </button>
+            
+            <template x-if="pokemon">
+                <div class="bg-white rounded-lg shadow-lg p-6 mt-6">
+                    <h3 x-text="pokemon.name" class="text-2xl font-bold capitalize mb-4"></h3>
+                    <img :src="pokemon.image" :alt="pokemon.name" class="w-48 h-48 mx-auto mb-4">
+                    <p class="text-lg"><strong>Height:</strong> <span x-text="pokemon.height"></span> dm</p>
+                    <p class="text-lg"><strong>Weight:</strong> <span x-text="pokemon.weight"></span> hg</p>
+                    <p class="text-lg"><strong>Type(s):</strong> <span x-text="pokemon.types.join(', ')"></span></p>
+                </div>
+            </template>
+        </section>
+
+        <!-- Pokémon Species Endpoint -->
+        <section x-data="pokemonSpecies()" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Pokémon Species Info</h2>
+            <div class="mb-4">
+                <input 
+                    type="text" 
+                    x-model="speciesName" 
+                    placeholder="Enter Pokémon name (e.g., pikachu)"
+                    @keyup.enter="fetchSpecies()"
+                    class="px-4 py-2 border border-gray-300 rounded w-full"
+                >
+            </div>
+            <button @click="fetchSpecies()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                Get Species Info
+            </button>
+
+            <template x-if="species">
+                <div class="bg-white rounded-lg shadow-lg p-6 mt-6">
+                    <h3 x-text="species.name" class="text-2xl font-bold capitalize mb-4"></h3>
+                    <p class="text-lg mb-2"><strong>Color:</strong> <span x-text="species.color" class="capitalize"></span></p>
+                    <p class="text-lg mb-2"><strong>Habitat:</strong> <span x-text="species.habitat || 'Unknown'" class="capitalize"></span></p>
+                    <p class="text-lg mb-4"><strong>Description:</strong></p>
+                    <p x-text="species.description" class="text-gray-700"></p>
+                </div>
+            </template>
+
+            <template x-if="error">
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-6">
+                    <p x-text="error"></p>
+                </div>
+            </template>
+        </section>
+    </main>
+</body>
+</html>
